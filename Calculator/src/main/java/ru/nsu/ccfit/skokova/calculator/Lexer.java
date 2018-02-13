@@ -2,6 +2,7 @@ package ru.nsu.ccfit.skokova.calculator;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.Objects;
 
 public class Lexer {
     private Reader reader;
@@ -12,7 +13,7 @@ public class Lexer {
         current = (char) reader.read();
     }
 
-    public Lexeme getLexeme() throws IOException {
+    public ru.nsu.ccfit.skokova.calculator.Lexeme getLexeme() throws IOException {
         if (current == '\uFFFF') {
             return new Lexeme("", LexemeType.EOF);
         }
@@ -28,7 +29,7 @@ public class Lexer {
             } while (Character.isDigit(current));
         }
 
-        if (temp != ""){
+        if (!Objects.equals(temp, "")){
             return new Lexeme(temp, LexemeType.NUMBER);
         }
 
